@@ -1,0 +1,22 @@
+org: fe2023
+service: WhereItS
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  hello:
+    handler: handler.getEvent
+    events:
+      - httpApi:
+          path: /events
+          method: get
+
+  orderTicket:
+    handler: orderTicket.getOrder
+    events:
+      - httpApi:
+          path: /events/{id}
+          method: get
